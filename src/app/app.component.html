@@ -1,0 +1,200 @@
+<header class="site-header">
+  <nav class="navbar">
+    <a href="#home" class="brand">
+      <span class="brand-icon">FC</span>
+      <span>
+        <strong>Farmer Compiler</strong>
+        <small>AK Compiler</small>
+      </span>
+    </a>
+
+    <button class="menu-button" type="button" (click)="toggleMenu()" aria-label="Toggle navigation">
+      {{ menuOpen() ? '×' : '☰' }}
+    </button>
+
+    <div class="nav-links" [class.open]="menuOpen()">
+      <a href="#home" (click)="closeMenu()">Home</a>
+      <a href="#about" (click)="closeMenu()">About</a>
+      <a href="#compiler" (click)="closeMenu()">Compiler</a>
+      <a href="#details" (click)="closeMenu()">Project Details</a>
+      <a href="#examples" (click)="closeMenu()">Examples</a>
+    </div>
+
+    <a class="nav-cta" href="#compiler">Try Compiler</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero section">
+    <div class="hero-copy reveal">
+      <span class="welcome-badge">Welcome Farmer Compiler</span>
+      <h1>A custom compiler for smart farming rules.</h1>
+      <p>
+        Farmer Compiler is an Angular web application for an AK Compiler agricultural language.
+        It shows the full compiler pipeline from source code to target code.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="#compiler">Run Compiler</a>
+        <a class="button secondary" href="#details">View 6 Phases</a>
+      </div>
+    </div>
+
+    <div class="hero-card float-card">
+      <div class="window-dots">
+        <span></span><span></span><span></span>
+      </div>
+      <pre>{{ sampleCode }}</pre>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <p class="eyebrow">About Us</p>
+    <h2>Who are we?</h2>
+
+    <div class="about-grid">
+      <article class="card large-card reveal">
+        <h3>Askalany and Karim</h3>
+        <p>
+          We are Askalany and Karim, two very dedicated farmers who decided to build a compiler
+          instead of only planting crops. Farmer Compiler turns simple smart-farm rules into structured
+          compiler outputs, proving how source code moves through the full compilation pipeline.
+        </p>
+        <p>
+          The project combines agriculture, IoT logic, custom grammar, Arabizi-style keywords,
+          and compiler construction concepts in one educational system.
+        </p>
+      </article>
+
+      <article class="card green-card reveal">
+        <small>Language Identity</small>
+        <h3>AK Compiler</h3>
+        <p>
+          <strong>warene</strong> means show output,
+          <strong>3eed</strong> means repeat loop,
+          and <strong>t3bt</strong> means the program is finished.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="compiler" class="section">
+    <p class="eyebrow">Live Compiler</p>
+    <h2>Write Farmer Compiler code and run all 6 phases.</h2>
+
+    <div class="compiler-grid">
+      <article class="editor-panel card reveal">
+        <div class="panel-heading">
+          <div>
+            <h3>Source Code Editor</h3>
+            <p>Use sensor, limit, warene, when, 3eed, and t3bt.</p>
+          </div>
+
+          <div class="button-row">
+            <button class="button secondary small" type="button" (click)="resetCode()">Reset</button>
+            <button class="button primary small" type="button" (click)="compile()">Compile</button>
+          </div>
+        </div>
+
+        <textarea
+          [ngModel]="sourceCode()"
+          (ngModelChange)="updateSourceCode($event)"
+          spellcheck="false"
+          aria-label="Farmer Compiler source code editor"
+        ></textarea>
+      </article>
+
+      <article class="output-side reveal">
+        @if (compilerError()) {
+          <div class="error-card">
+            <h3>Compiler Error</h3>
+            <p><strong>Stage:</strong> {{ compilerError()?.stage }}</p>
+            <p><strong>Location:</strong> {{ compilerError()?.location }}</p>
+            <p><strong>Message:</strong> {{ compilerError()?.message }}</p>
+            <p><strong>Explanation:</strong> {{ compilerError()?.explanation }}</p>
+          </div>
+        }
+
+        @if (result()) {
+          <div class="success-card">
+            <h3>Compilation completed successfully.</h3>
+            <p>All 6 compiler phases were generated.</p>
+          </div>
+
+          <app-output-block title="Phase 1: Lexical Analysis" [content]="tokenText()"></app-output-block>
+          <app-output-block title="Phase 2: Syntax Analysis / AST" [content]="result()?.astText || ''"></app-output-block>
+        }
+      </article>
+    </div>
+
+    @if (result()) {
+      <div class="phase-output-grid">
+        <app-output-block title="Phase 3: Semantic Analysis / Symbol Table" [content]="symbolTableText()"></app-output-block>
+        <app-output-block title="Phase 4: Intermediate Code Generation" [content]="(result()?.intermediateCode || []).join('\n')"></app-output-block>
+        <app-output-block title="Phase 5: Code Optimization" [content]="(result()?.optimizedCode || []).join('\n')"></app-output-block>
+        <app-output-block title="Phase 6: Target Code Generation" [content]="(result()?.targetCode || []).join('\n')"></app-output-block>
+        <app-output-block title="Final Output" [content]="finalOutput()"></app-output-block>
+      </div>
+    }
+  </section>
+
+  <section id="details" class="section">
+    <p class="eyebrow">Project Details</p>
+    <h2>Compiler explanation like a presentation.</h2>
+
+    <div class="phase-cards">
+      @for (phase of phases; track phase.title) {
+        <article class="card phase-card reveal">
+          <span class="phase-icon">▧</span>
+          <h3>{{ phase.title }}</h3>
+          <p>{{ phase.body }}</p>
+        </article>
+      }
+    </div>
+
+    <article class="card grammar-card reveal">
+      <h3>Core Grammar</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rule</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of grammarRows; track row[0]) {
+              <tr>
+                <td>{{ row[0] }}</td>
+                <td><code>{{ row[1] }}</code></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
+  <section id="examples" class="section">
+    <p class="eyebrow">Examples</p>
+    <h2>Ready-made programs you can try.</h2>
+
+    <div class="examples-grid">
+      @for (example of examples; track example.title) {
+        <article class="card example-card reveal">
+          <h3>{{ example.title }}</h3>
+          <p>{{ example.description }}</p>
+          <pre>{{ example.code }}</pre>
+          <button class="button dark" type="button" (click)="loadExample(example)">Load Example</button>
+        </article>
+      }
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div>
+    <strong>Farmer Compiler</strong>
+    <p>Custom compiler construction project by Askalany and Karim.</p>
+  </div>
+  <span>AK Compiler DSL · Smart Farming · 6 Compiler Phases</span>
+</footer>
