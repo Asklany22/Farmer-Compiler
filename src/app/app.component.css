@@ -677,8 +677,8 @@ td {
 th {
   font-weight: 900;
   color: #020617;
-  background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
-  border-bottom: 2px solid #bbf7d0;
+  background: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
 }
 
 tbody tr {
@@ -703,8 +703,8 @@ tbody td:last-child {
 
 code {
   font-family: 'Courier New', monospace;
-  color: #16a34a;
-  background: #ecfdf5;
+  color: #1e293b;
+  background: #f1f5f9;
   padding: 2px 6px;
   border-radius: 4px;
 }
