@@ -1070,8 +1070,16 @@ code {
     padding: 0 12px;
   }
 
+  .hero {
+    gap: 28px;
+  }
+
   .hero h1 {
-    font-size: 36px;
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 15px;
   }
 
   .section h2 {
@@ -1079,7 +1087,7 @@ code {
   }
 
   .hero-copy > p {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .card,
@@ -1101,6 +1109,7 @@ code {
     min-height: 350px;
     padding: 14px;
     border-radius: 16px;
+    font-size: 15px;
   }
 
   .table-wrap {
@@ -1116,8 +1125,12 @@ code {
     font-size: 42px;
   }
 
+  .welcome-heading {
+    font-size: 48px;
+  }
+
   .welcome-subtitle {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   .welcome-icon {
@@ -1133,38 +1146,154 @@ code {
     flex-direction: column;
     text-align: center;
   }
+
+  .nav-cta {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
   .brand-icon {
     width: 40px;
     height: 40px;
+    font-size: 18px;
   }
 
   .brand strong {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .brand small {
-    font-size: 10px;
+    font-size: 9px;
+  }
+
+  .site-header {
+    min-height: 60px;
+  }
+
+  .navbar {
+    min-height: 60px;
+    gap: 8px;
+  }
+
+  .nav-links {
+    display: none;
   }
 
   .hero {
     min-height: auto;
     padding-top: 40px;
+    gap: 24px;
   }
 
   .hero h1 {
-    font-size: 32px;
+    font-size: 28px;
     line-height: 1.2;
   }
 
+  .hero p {
+    font-size: 14px;
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+
+  .button {
+    padding: 0 16px;
+    min-height: 40px;
+    font-size: 13px;
+  }
+
   .welcome-title {
+    font-size: 32px;
+  }
+
+  .welcome-heading {
     font-size: 36px;
   }
 
+  .welcome-subtitle {
+    font-size: 12px;
+  }
+
+  .section {
+    padding: 40px 12px;
+  }
+
+  .section h2 {
+    font-size: 24px;
+  }
+
+  .card,
+  .output-block,
+  .phase-card,
+  .example-card {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
   textarea {
-    min-height: 300px;
+    min-height: 280px;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  .output-block pre,
+  .example-card pre {
+    font-size: 11px;
+    padding: 10px;
+    max-height: 200px;
+  }
+
+  .table-wrap {
+    font-size: 11px;
+    overflow-x: auto;
+  }
+
+  th,
+  td {
+    padding: 8px 10px;
+  }
+
+  .phase-cards,
+  .examples-grid,
+  .about-grid,
+  .compiler-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .panel-heading {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-card {
+    transform: none;
+    padding: 16px;
+  }
+
+  .float-card {
+    animation: none;
+  }
+
+  .nav-cta {
+    padding: 0 12px;
+    min-height: 40px;
+    font-size: 12px;
+  }
+
+  .menu-button {
+    font-size: 24px;
+    padding: 8px 12px;
   }
 }
 
