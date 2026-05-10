@@ -47,6 +47,7 @@ t3bt`;
   readonly result = signal<CompileResult | null>(null);
   readonly compilerError = signal<FarmerCompilerError | null>(null);
   readonly menuOpen = signal(false);
+  readonly showWelcome = signal(true);
 
   readonly tokenText = computed(() => {
     const output = this.result();
@@ -190,6 +191,10 @@ t3bt`
 
   constructor(private readonly compiler: CompilerService) {
     this.compile();
+    // Hide welcome screen after 3 seconds
+    setTimeout(() => {
+      this.showWelcome.set(false);
+    }, 3000);
   }
 
   updateSourceCode(value: string): void {
