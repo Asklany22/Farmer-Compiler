@@ -1,8 +1,17 @@
 <div class="welcome-screen" *ngIf="showWelcome()">
   <div class="welcome-content">
-    <h1 class="welcome-title">AK Compiler</h1>
-    <div class="welcome-divider"></div>
-    <p class="welcome-subtitle">Smart Farming Automation</p>
+    <!-- Logo -->
+    <div class="welcome-logo-box">
+      <span class="welcome-logo">FC</span>
+    </div>
+
+    <!-- Welcome Text - Simple & Professional -->
+    <div class="welcome-text-wrapper">
+      <h1 class="welcome-heading">Welcome</h1>
+    </div>
+
+    <!-- Subtitle -->
+    <p class="welcome-subtitle">AK Compiler - Smart Farming</p>
   </div>
 </div>
 
@@ -38,7 +47,7 @@
       <span class="welcome-badge">Welcome Farmer Compiler</span>
       <h1>A custom compiler for smart farming rules.</h1>
       <p>
-        Farmer Compiler is an Angular web application for an AK Compiler agricultural language.
+        Farmer Compiler is web application for an AK Compiler agricultural language.
         It shows the full compiler pipeline from source code to target code.
       </p>
       <div class="hero-actions">
@@ -68,7 +77,7 @@
           compiler outputs, proving how source code moves through the full compilation pipeline.
         </p>
         <p>
-          The project combines agriculture, IoT logic, custom grammar, Arabizi-style keywords,
+          The project combines agriculture, IoT logic, custom grammar, AK keywords,
           and compiler construction concepts in one educational system.
         </p>
       </article>
@@ -87,7 +96,7 @@
 
   <section id="compiler" class="section">
     <p class="eyebrow">Live Compiler</p>
-    <h2>Write Farmer Compiler code and run all 6 phases.</h2>
+    <h2> Farmer Compiler </h2>
 
     <div class="compiler-grid">
       <article class="editor-panel card reveal">
@@ -147,7 +156,7 @@
 
   <section id="details" class="section">
     <p class="eyebrow">Project Details</p>
-    <h2>Compiler explanation like a presentation.</h2>
+    <h2>Compiler explanation .</h2>
 
     <div class="phase-cards">
       @for (phase of phases; track phase.title) {
