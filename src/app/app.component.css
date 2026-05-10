@@ -1047,6 +1047,7 @@ code {
   .about-grid,
   .compiler-grid {
     gap: 16px;
+    grid-template-columns: 1fr;
   }
 
   .phase-output-grid {
@@ -1096,6 +1097,11 @@ code {
   .example-card {
     padding: 16px;
     border-radius: 20px;
+  }
+
+  .compiler-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .output-block pre,
@@ -1231,6 +1237,16 @@ code {
   .example-card {
     padding: 14px;
     border-radius: 16px;
+  }
+
+  .compiler-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .panel-heading {
+    flex-direction: column;
+    gap: 12px;
   }
 
   textarea {
