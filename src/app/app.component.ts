@@ -191,10 +191,10 @@ t3bt`
 
   constructor(private readonly compiler: CompilerService) {
     this.compile();
-    // Hide welcome screen after 3 seconds
+    // Hide welcome screen after 3.2 seconds
     setTimeout(() => {
       this.showWelcome.set(false);
-    }, 3000);
+    }, 3200);
   }
 
   updateSourceCode(value: string): void {

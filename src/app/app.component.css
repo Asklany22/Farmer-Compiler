@@ -178,25 +178,17 @@ main {
   scroll-margin-top: 90px;
 }
 
-/* WELCOME SCREEN 3D ANIMATION - PROFESSIONAL */
+/* WELCOME SCREEN - PURE BLACK WITH DRAWING ANIMATION */
 .welcome-screen {
   position: fixed;
   inset: 0;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: #000000;
   z-index: 999;
-  animation: welcomeSlideOut 1s ease-in forwards 2.8s;
+  animation: welcomeSlideOut 1s ease-in forwards 3.2s;
   perspective: 1000px;
   overflow: hidden;
-}
-
-.welcome-screen::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.05), transparent 70%);
-  animation: pulseGlow 3s ease-in-out infinite;
 }
 
 .welcome-content {
@@ -208,10 +200,8 @@ main {
 .welcome-icon {
   font-size: clamp(80px, 15vw, 140px);
   margin-bottom: 30px;
-  animation: iconFloat 3s ease-in-out infinite;
-  filter: drop-shadow(0 20px 40px rgba(34, 197, 94, 0.3));
-  opacity: 0;
-  animation: iconFadeIn 0.8s ease forwards, iconFloat 3s ease-in-out 0.5s infinite;
+  animation: iconFadeIn 0.6s ease forwards;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
 }
 
 .welcome-title {
@@ -219,26 +209,27 @@ main {
   font-weight: 900;
   letter-spacing: -0.05em;
   margin: 0 0 12px 0;
-  background: linear-gradient(135deg, #22c55e, #86efac);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: typewriter 2.2s steps(16, end) forwards 0.3s;
+  color: #ffffff;
+  animation: drawText 2.8s ease-in-out forwards 0.6s;
   white-space: nowrap;
   overflow: hidden;
   position: relative;
   display: inline-block;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
-.welcome-title::after {
-  content: '';
+.welcome-title::before {
+  content: 'AK Compiler';
   position: absolute;
-  right: -4px;
+  left: 0;
   top: 0;
-  height: 100%;
-  width: 3px;
-  background: #22c55e;
-  animation: blink 0.7s infinite 0.3s;
+  color: #22c55e;
+  animation: drawStroke 2.8s ease-in-out forwards 0.6s;
+  -webkit-text-stroke: 1px #22c55e;
+  -webkit-text-fill-color: transparent;
+  z-index: 1;
+  clip-path: polygon(0 0, 0% 0, 0% 100%, 0 100%);
 }
 
 .welcome-subtitle {
@@ -246,56 +237,48 @@ main {
   font-weight: 400;
   letter-spacing: 0.08em;
   margin: 24px 0 0 0;
-  animation: subtitleFadeIn 1s ease forwards 2.2s;
+  animation: subtitleFadeIn 0.8s ease forwards 3s;
   opacity: 0;
-  color: #94a3b8;
+  color: #ffffff;
   text-transform: uppercase;
+  font-family: 'Arial', 'Helvetica', sans-serif;
 }
 
 .welcome-divider {
   width: 60px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #22c55e, transparent);
+  background: #ffffff;
   margin: 28px auto 0;
-  animation: expandLine 1s ease forwards 2.3s;
+  animation: expandLine 1s ease forwards 2.8s;
   opacity: 0;
 }
 
-@keyframes typewriter {
-  from {
-    width: 0;
+@keyframes drawText {
+  0% {
+    clip-path: polygon(0 0, 0% 0, 0% 100%, 0 100%);
   }
-  to {
-    width: 100%;
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 }
 
-@keyframes blink {
-  0%, 49% {
-    opacity: 1;
+@keyframes drawStroke {
+  0% {
+    clip-path: polygon(0 0, 0% 0, 0% 100%, 0 100%);
   }
-  50%, 100% {
-    opacity: 0;
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 }
 
 @keyframes iconFadeIn {
   from {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.8) rotateZ(-10deg);
   }
   to {
     opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes iconFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
+    transform: scale(1) rotateZ(0);
   }
 }
 
@@ -318,15 +301,6 @@ main {
   to {
     opacity: 1;
     width: 60px;
-  }
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
   }
 }
 
@@ -729,6 +703,20 @@ code {
   padding: 28px;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
   transition: all 0.3s ease;
+  animation: slideInUp 0.6s ease both;
+  opacity: 0;
+}
+
+.example-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.example-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.example-card:nth-child(3) {
+  animation-delay: 0.3s;
 }
 
 .example-card:hover {
@@ -810,6 +798,17 @@ code {
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
